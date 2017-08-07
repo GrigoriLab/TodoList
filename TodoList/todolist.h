@@ -11,6 +11,9 @@ class TodoList : public QMainWindow
 public:
 	TodoList(QWidget *parent = 0);
 	~TodoList();
+private slots:
+
+	void Add();
 
 private:
 	Ui::TodoListClass ui;
