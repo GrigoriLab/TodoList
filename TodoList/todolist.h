@@ -14,6 +14,7 @@ public:
 private slots:
 
 	void Add();
+	void editTrigger();
 
 private:
 	Ui::TodoListClass ui;
