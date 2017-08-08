@@ -18,10 +18,20 @@ TodoList::TodoList(QWidget *parent)
 	model->setStringList(list);
 
 	ui.listViewPlaned->setModel(model);
+	ui.listViewInProgress->setModel(new QStringListModel(this));
+	ui.listViewDone->setModel(new QStringListModel(this));
+
+
 	ui.listViewPlaned->setEditTriggers(QAbstractItemView::AllEditTriggers);
 	//ui.listViewPlaned->setFlags(ui.listViewPlaned->flags() | Qt::ItemIsEditable);
 	connect(ui.listViewPlaned, &QListView::editTriggers, this, &TodoList::editTrigger);
-	//ui.listViewPlaned->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.listViewPlaned->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.listViewInProgress->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.listViewDone->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	ui.listViewPlaned->setDragDropMode(QAbstractItemView::DragDrop);
+	ui.listViewInProgress->setDragDropMode(QAbstractItemView::DragDrop);
+	ui.listViewDone->setDragDropMode(QAbstractItemView::DragDrop);
 }
 
 TodoList::~TodoList()
