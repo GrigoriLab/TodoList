@@ -45,7 +45,7 @@
       <item row="1" column="0">
        <layout class="QGridLayout" name="mainGridLayout">
         <item row="0" column="0">
-         <widget class="QListView" name="listViewPlaned"/>
+         <widget class="ListViewPlanned" name="listViewPlanned"/>
         </item>
         <item row="0" column="2">
          <widget class="QListView" name="listViewDone"/>
@@ -77,6 +77,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ListViewPlanned</class>
+   <extends>QListView</extends>
+   <header location="global">ListViewPlanned.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="todolist.qrc"/>
  </resources>
