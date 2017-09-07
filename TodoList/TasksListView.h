@@ -3,15 +3,15 @@
 #include <QListView>
 #include <QDragEnterEvent>
 
-class ListViewPlanned : public QListView
+class TasksListView : public QListView
 {
 	Q_OBJECT
 public:
-	ListViewPlanned(QWidget *parent = 0) :QListView(parent)
+	TasksListView(QWidget *parent = 0) :QListView(parent)
 	{
 
 	}
-	~ListViewPlanned(){};
+	~TasksListView(){};
 	void dragEnterEvent(QDragEnterEvent *event) override;
 
 

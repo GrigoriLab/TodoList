@@ -3,30 +3,41 @@
 #include <qapplication.h>
 #include <QStringListModel.h>
 #include <QListView>
-#include "ListViewPlanned.h"
+#include "TasksListView.h"
 
 TodoList::TodoList(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
 	connect(ui.pushButtonAdd, &QPushButton::clicked, this, &TodoList::Add);
-	QStringListModel *model = new QStringListModel(this);
+	plannedModel = new QStringListModel(this);
+	inProgressModel = new QStringListModel(this);
+	doneModel = new QStringListModel(this);
 
 	QStringList list;
 
 	list << "First Task"<<"Second Task"<<"";
 
-	model->setStringList(list);
+	plannedModel->setStringList(list);
+	doneModel->setStringList(list);
+	inProgressModel->setStringList(list);
 
-	ui.listViewPlanned->setModel(model);
-	ui.listViewInProgress->setModel(new QStringListModel(this));
-	ui.listViewDone->setModel(new QStringListModel(this));
+	ui.listViewPlanned->setModel(plannedModel);
+	ui.listViewInProgress->setModel(inProgressModel);
+	ui.listViewDone->setModel(doneModel);
 
 
 	ui.listViewPlanned->setEditTriggers(QAbstractItemView::AllEditTriggers);
-	//ui.listViewPlaned->setFlags(ui.listViewPlaned->flags() | Qt::ItemIsEditable);
+	//ui.listViewPlanned->setFlags(ui.listViewPlanned->flags() | Qt::ItemIsEditable);
 	connect(ui.listViewPlanned, &QListView::editTriggers, this, &TodoList::editTrigger);
-	connect(ui.listViewPlanned, &ListViewPlanned::dragEnterEvent, this, &TodoList::editTrigger);
+	connect(ui.listViewPlanned, &TasksListView::dragEnterEvent, this, &TodoList::editTrigger);
+
+	connect(ui.listViewInProgress, &QListView::editTriggers, this, &TodoList::editTrigger);
+	connect(ui.listViewInProgress, &TasksListView::dragEnterEvent, this, &TodoList::editTrigger);
+
+	connect(ui.listViewDone, &QListView::editTriggers, this, &TodoList::editTrigger);
+	connect(ui.listViewDone, &TasksListView::dragEnterEvent, this, &TodoList::editTrigger);
+
 	ui.listViewPlanned->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	ui.listViewInProgress->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	ui.listViewDone->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -38,7 +49,9 @@ TodoList::TodoList(QWidget *parent)
 
 TodoList::~TodoList()
 {
-
+	delete plannedModel;
+	delete inProgressModel;
+	delete doneModel;
 }
 
 void TodoList::Add()

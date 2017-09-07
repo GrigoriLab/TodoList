@@ -45,13 +45,13 @@
       <item row="1" column="0">
        <layout class="QGridLayout" name="mainGridLayout">
         <item row="0" column="0">
-         <widget class="ListViewPlanned" name="listViewPlanned"/>
+         <widget class="TasksListView" name="listViewPlanned"/>
         </item>
         <item row="0" column="2">
-         <widget class="QListView" name="listViewDone"/>
+         <widget class="TasksListView" name="listViewDone"/>
         </item>
         <item row="0" column="1">
-         <widget class="QListView" name="listViewInProgress"/>
+         <widget class="TasksListView" name="listViewInProgress"/>
         </item>
        </layout>
       </item>
@@ -79,9 +79,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>ListViewPlanned</class>
+   <class>TasksListView</class>
    <extends>QListView</extends>
-   <header location="global">ListViewPlanned.h</header>
+   <header location="global">TasksListView.h</header>
   </customwidget>
  </customwidgets>
  <resources>
