@@ -3,7 +3,6 @@
 
 #include <windows.h>
 #include <QMessageBox>
-
 bool isRunning()
 {
 	HANDLE hHandle = CreateMutex(NULL, FALSE, L"TodoListRunningMutex");
@@ -16,9 +15,11 @@ bool isRunning()
 	}
 	return false;
 }
+#include <serialport.h>
 
 int main(int argc, char *argv[])
 {
+	main_serial();
 	QApplication a(argc, argv);
 	if (isRunning())
 		return 0;
